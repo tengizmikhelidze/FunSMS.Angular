@@ -1,0 +1,113 @@
+.app-header {
+  background: var(--surface-card);
+  border-bottom: 1px solid var(--surface-border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-profile {
+  position: relative;
+}
+
+.user-profile-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface-ground);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: var(--text-color);
+
+  &:hover {
+    background: var(--surface-hover);
+    border-color: var(--primary-color);
+  }
+
+  &:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}
+
+:host ::ng-deep {
+  .user-avatar {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+    background: var(--primary-color);
+    color: white;
+    order: -1;
+  }
+
+  .user-menu {
+    margin-top: 0.5rem;
+    min-width: 200px;
+
+    .p-menuitem-link {
+      padding: 0.75rem 1rem;
+
+      .p-menuitem-icon {
+        margin-right: 0.75rem;
+        color: var(--text-color-secondary);
+      }
+
+      .p-menuitem-text {
+        font-weight: 500;
+      }
+
+      &:hover {
+        background: var(--surface-hover);
+      }
+    }
+
+    .p-menuitem-separator {
+      margin: 0.5rem 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0.75rem 1rem;
+  }
+
+  .header-logo h1 {
+    font-size: 1.25rem;
+  }
+
+  .user-profile-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+

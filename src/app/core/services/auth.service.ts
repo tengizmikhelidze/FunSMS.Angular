@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, map, catchError } from 'rxjs/operators';
@@ -20,6 +20,9 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
+  // Signal for reactive components
+  private currentUserSignal = signal<User | null>(null);
+
   constructor(private http: HttpClient) {
     this.checkAuth();
   }
@@ -37,6 +40,7 @@ export class AuthService {
             localStorage.setItem('accessToken', response.data.accessToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
             this.currentUserSubject.next(response.data.user);
+            this.currentUserSignal.set(response.data.user);
           }
         })
       );
@@ -51,6 +55,7 @@ export class AuthService {
             localStorage.setItem('accessToken', response.data.accessToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
             this.currentUserSubject.next(response.data.user);
+            this.currentUserSignal.set(response.data.user);
           }
         })
       );
@@ -93,6 +98,7 @@ export class AuthService {
         tap(response => {
           if (response.success) {
             this.currentUserSubject.next(response.data.user);
+            this.currentUserSignal.set(response.data.user);
           }
         }),
         map(response => response.data.user)
@@ -113,9 +119,10 @@ export class AuthService {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     this.currentUserSubject.next(null);
+    this.currentUserSignal.set(null);
   }
 
-  getCurrentUser(): User | null {
-    return this.currentUserSubject.value;
+  getCurrentUser() {
+    return this.currentUserSignal.asReadonly();
   }
 }

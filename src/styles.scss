@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Custom Font - ALK Sanet */
+@font-face {
+  font-family: 'ALK Sanet';
+  src: url('/assets/fonts/alk-sanet.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply custom font globally */
+* {
+  font-family: 'ALK Sanet', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+/* Ensure all elements use the font */
+body,
+html,
+input,
+textarea,
+select,
+button,
+.p-component {
+  font-family: 'ALK Sanet', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+

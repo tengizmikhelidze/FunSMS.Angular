@@ -1,0 +1,36 @@
+<header class="app-header">
+  <div class="header-container">
+    <div class="header-logo">
+      <h1>SMS Joke</h1>
+    </div>
+
+    <div class="header-actions">
+      @if (currentUser(); as user) {
+        <div class="user-profile">
+          <button
+            type="button"
+            class="user-profile-button"
+            (click)="menu.toggle($event)"
+            pButton
+            [label]="user.name"
+          >
+            <p-avatar
+              [label]="userInitials()"
+              [image]="user.profile_picture"
+              shape="circle"
+              styleClass="user-avatar"
+            />
+          </button>
+
+          <p-menu
+            #menu
+            [model]="menuItems"
+            [popup]="true"
+            styleClass="user-menu"
+          />
+        </div>
+      }
+    </div>
+  </div>
+</header>
+
