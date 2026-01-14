@@ -1,33 +1,33 @@
 <div class="auth-container">
   <div class="auth-card">
     <div class="auth-header">
-      <h1>Welcome Back</h1>
-      <p>Sign in to your account</p>
+      <h1>მოგესალმებით !</h1>
+      <p>შედით თქვენს ექაუნთში</p>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
       <div class="form-field">
-        <label for="email">Email</label>
+        <label for="email">ემაილი</label>
         <input
           pInputText
           id="email"
           formControlName="email"
           type="email"
-          placeholder="Enter your email"
+          placeholder="შეიყვანეთ იმეილი !"
           class="w-full"
           [class.ng-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
         />
         @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-          <small class="error-message">Valid email is required</small>
+          <small class="error-message">გთხოვთ შეიყვანოთ სწორი იმეილი !</small>
         }
       </div>
 
       <div class="form-field">
-        <label for="password">Password</label>
+        <label for="password">პაროლი</label>
         <p-password
           id="password"
           formControlName="password"
-          placeholder="Enter your password"
+          placeholder="შეიყვანეთ პაროლი !"
           [toggleMask]="true"
           [feedback]="false"
           styleClass="w-full"
@@ -35,7 +35,7 @@
           [class.ng-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
         />
         @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-          <small class="error-message">Password is required</small>
+          <small class="error-message">პაროლი სავალდებულოა !</small>
         }
       </div>
 
@@ -55,7 +55,7 @@
       ></button>
 
       <div class="auth-footer">
-        <p>Don't have an account? <a routerLink="/auth/register">Sign up</a></p>
+        <p>არ გაქვთ ექაუნთი? <a routerLink="/auth/register">დარეგისტრირდით</a></p>
       </div>
     </form>
   </div>
