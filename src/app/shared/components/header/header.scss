@@ -66,17 +66,21 @@
   gap: 1rem;
 }
 
-.theme-toggle-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--border-radius);
-  transition: var(--transition-base);
+:host ::ng-deep .theme-toggle-button {
+  .p-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border-radius: var(--border-radius);
+    transition: var(--transition-base);
 
-  &:hover {
-    transform: scale(1.05);
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .p-button-icon {
+      font-size: 1.125rem;
+    }
   }
 }
 

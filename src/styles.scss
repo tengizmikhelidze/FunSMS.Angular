@@ -4,6 +4,7 @@
    IMPORT CSS VARIABLES (Design Tokens)
    ========================================== */
 @use 'styles/variables.scss' as *;
+@use "primeicons/primeicons.css" as *;
 
 /* Custom Font - ALK Sanet */
 @font-face {

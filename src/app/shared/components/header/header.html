@@ -16,16 +16,16 @@
 
         <div class="header-actions">
             <!-- Theme Toggle Button -->
-            <button
-                type="button"
-                class="theme-toggle-button"
-                (click)="themeService.toggleTheme()"
-                pButton
-                [icon]="themeIcon()"
+            <p-toggle-button
+                [(ngModel)]="isDarkMode"
+                (onChange)="onThemeToggle()"
+                [onIcon]="'pi pi-moon'"
+                [offIcon]="'pi pi-sun'"
+                onLabel = dark
+                offLabel = light
+                pStyleClass="theme-toggle-button"
                 [title]="themeLabel()"
-                severity="secondary"
-                [outlined]="true"
-            ></button>
+            ></p-toggle-button>
 
             @if (currentUser(); as user) {
                 <div class="user-profile">
