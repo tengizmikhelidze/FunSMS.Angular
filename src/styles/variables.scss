@@ -274,58 +274,84 @@
 }
 
 /* ============================================
-   DARK MODE SUPPORT (Optional - Ready to use)
+   LIGHT MODE (Default)
    ============================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Override colors for dark mode */
-    --text-color: var(--color-gray-100);
-    --text-color-secondary: var(--color-gray-400);
-    --text-color-muted: var(--color-gray-500);
-
-    --bg-primary: var(--color-gray-900);
-    --bg-secondary: var(--color-gray-800);
-    --bg-tertiary: var(--color-gray-700);
-
-    --surface-ground: var(--color-gray-900);
-    --surface-card: var(--color-gray-800);
-    --surface-overlay: var(--color-gray-800);
-    --surface-hover: var(--color-gray-700);
-    --surface-section: var(--color-gray-800);
-
-    --surface-border: var(--color-gray-700);
-    --border-color: var(--color-gray-600);
-    --border-color-light: var(--color-gray-700);
-    --border-color-dark: var(--color-gray-500);
-  }
-}
-
-/* Force light mode class (if you want to override system preference) */
-.light-mode {
+.light-mode,
+:root:not(.dark-mode) {
   color-scheme: light;
+
+  /* Text Colors - Optimized for Light Mode */
+  --text-color: var(--color-gray-900);
+  --text-color-secondary: var(--color-gray-600);
+  --text-color-muted: var(--color-gray-500);
+  --text-color-disabled: var(--color-gray-400);
+
+  /* Background Colors - Bright and Clean */
+  --bg-primary: #ffffff;
+  --bg-secondary: var(--color-gray-50);
+  --bg-tertiary: var(--color-gray-100);
+
+  /* Surface Colors - Light and Airy */
+  --surface-ground: #f8fafc;
+  --surface-card: #ffffff;
+  --surface-overlay: #ffffff;
+  --surface-hover: var(--color-gray-50);
+  --surface-section: var(--color-gray-50);
+
+  /* Border Colors - Subtle */
+  --surface-border: var(--color-gray-200);
+  --border-color: var(--color-gray-300);
+  --border-color-light: var(--color-gray-200);
+  --border-color-dark: var(--color-gray-400);
+
+  /* Shadows - Subtle for Light Mode */
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
 
-/* Force dark mode class (if you want to override system preference) */
+/* ============================================
+   DARK MODE
+   ============================================ */
 .dark-mode {
   color-scheme: dark;
 
-  --text-color: var(--color-gray-100);
+  /* Text Colors - Optimized for Dark Mode */
+  --text-color: var(--color-gray-50);
   --text-color-secondary: var(--color-gray-400);
   --text-color-muted: var(--color-gray-500);
+  --text-color-disabled: var(--color-gray-600);
 
-  --bg-primary: var(--color-gray-900);
-  --bg-secondary: var(--color-gray-800);
-  --bg-tertiary: var(--color-gray-700);
+  /* Background Colors - Deep and Rich */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
 
-  --surface-ground: var(--color-gray-900);
-  --surface-card: var(--color-gray-800);
-  --surface-overlay: var(--color-gray-800);
-  --surface-hover: var(--color-gray-700);
-  --surface-section: var(--color-gray-800);
+  /* Surface Colors - Dark with Contrast */
+  --surface-ground: #0f172a;
+  --surface-card: #1e293b;
+  --surface-overlay: #1e293b;
+  --surface-hover: #334155;
+  --surface-section: #1e293b;
 
-  --surface-border: var(--color-gray-700);
-  --border-color: var(--color-gray-600);
-  --border-color-light: var(--color-gray-700);
-  --border-color-dark: var(--color-gray-500);
+  /* Border Colors - Subtle Dark */
+  --surface-border: #334155;
+  --border-color: #475569;
+  --border-color-light: #334155;
+  --border-color-dark: #64748b;
+
+  /* Shadows - More Prominent for Dark Mode */
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+
+  /* Primary Colors - Slightly Brighter for Dark Mode */
+  --primary-color: var(--color-primary-500);
+  --primary-color-hover: var(--color-primary-400);
+  --primary-color-active: var(--color-primary-300);
 }
 

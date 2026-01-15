@@ -15,6 +15,18 @@
         </div>
 
         <div class="header-actions">
+            <!-- Theme Toggle Button -->
+            <button
+                type="button"
+                class="theme-toggle-button"
+                (click)="themeService.toggleTheme()"
+                pButton
+                [icon]="themeIcon()"
+                [title]="themeLabel()"
+                severity="secondary"
+                [outlined]="true"
+            ></button>
+
             @if (currentUser(); as user) {
                 <div class="user-profile">
                     <button

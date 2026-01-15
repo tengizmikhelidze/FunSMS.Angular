@@ -66,6 +66,20 @@
   gap: 1rem;
 }
 
+.theme-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition-base);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
 .user-profile {
   position: relative;
 }
