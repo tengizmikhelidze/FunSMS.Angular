@@ -17,11 +17,42 @@
 }
 
 .header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+
+  .logo-icon {
+    background: var(--color-primary-50);
+    width: max-content;
+    height: max-content;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border-radius: var(--border-radius-xl);
+    padding: 0.5rem;
+    svg {
+      color: var(--surface-ground);
+    }
+  }
+
+  .header-title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-0);
+  }
+
   h1 {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     font-weight: 700;
     color: var(--primary-color);
     margin: 0;
+    letter-spacing: var(--spacing-px-1);
+  }
+
+  span {
+    font-size: var(--font-size-xs);
+    font-weight: 400;
   }
 }
 
@@ -110,4 +141,5 @@
     font-size: 0.875rem;
   }
 }
+
 
