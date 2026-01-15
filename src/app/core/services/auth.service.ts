@@ -125,4 +125,13 @@ export class AuthService {
   getCurrentUser() {
     return this.currentUserSignal.asReadonly();
   }
+
+  getCurrentUserValue(): User | null {
+    return this.currentUserSubject.value;
+  }
+
+  isAdmin(): boolean {
+    const user = this.currentUserSubject.value;
+    return user?.role === 'admin';
+  }
 }

@@ -4,6 +4,7 @@ export interface User {
   id: string;
   email: string;
   name: string;
+  role: 'user' | 'admin';
   profile_picture?: string;
   provider: AuthProvider;
   provider_id?: string;

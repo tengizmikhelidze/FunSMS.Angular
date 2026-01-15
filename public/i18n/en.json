@@ -117,6 +117,33 @@
       "status": "Status",
       "cost": "Cost"
     }
+  },
+  "admin": {
+    "sms": {
+      "title": "Admin - SMS Management",
+      "subtitle": "Manage all SMS messages in the system",
+      "allMessages": "All SMS Messages",
+      "total": "Total",
+      "searchPhone": "Search by Phone",
+      "searchPhonePlaceholder": "Enter phone number",
+      "search": "Search",
+      "status": "Status",
+      "allStatuses": "All Statuses",
+      "sentFilter": "Sent Status",
+      "noMessages": "No messages found",
+      "sendSms": "Send SMS",
+      "deleteSms": "Delete SMS",
+      "table": {
+        "date": "Date",
+        "user": "User ID",
+        "recipient": "Recipient",
+        "sender": "Sender Name",
+        "message": "Message",
+        "status": "Status",
+        "cost": "Cost",
+        "actions": "Actions"
+      }
+    }
   }
 }
 

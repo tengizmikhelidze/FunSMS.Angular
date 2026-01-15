@@ -62,26 +62,42 @@ export class HeaderComponent {
     this.themeService.setTheme(newTheme);
   }
 
-  menuItems: MenuItem[] = [
-    {
-      label: 'Account',
-      icon: 'pi pi-user',
-      command: () => this.navigateToAccount()
-    },
-    {
-      label: 'SMS History',
-      icon: 'pi pi-history',
-      command: () => this.navigateToHistory()
-    },
-    {
-      separator: true
-    },
-    {
-      label: 'Logout',
-      icon: 'pi pi-sign-out',
-      command: () => this.logout()
+  menuItems = computed<MenuItem[]>(() => {
+    const user = this.currentUser();
+    const baseItems: MenuItem[] = [
+      {
+        label: 'Account',
+        icon: 'pi pi-user',
+        command: () => this.navigateToAccount()
+      },
+      {
+        label: 'SMS History',
+        icon: 'pi pi-history',
+        command: () => this.navigateToHistory()
+      }
+    ];
+
+    // Add admin panel if user is admin
+    if (user?.role === 'admin') {
+      baseItems.push({
+        label: 'Admin Panel',
+        icon: 'pi pi-shield',
+        command: () => this.navigateToAdmin()
+      });
     }
-  ];
+
+    // Add separator and logout
+    baseItems.push(
+      { separator: true },
+      {
+        label: 'Logout',
+        icon: 'pi pi-sign-out',
+        command: () => this.logout()
+      }
+    );
+
+    return baseItems;
+  });
 
   navigateToAccount(): void {
     this.menu?.hide();
@@ -91,6 +107,11 @@ export class HeaderComponent {
   navigateToHistory(): void {
     this.menu?.hide();
     setTimeout(() => this.router.navigate(['/sms-history']), 100);
+  }
+
+  navigateToAdmin(): void {
+    this.menu?.hide();
+    setTimeout(() => this.router.navigate(['/admin']), 100);
   }
 
   navigateToHome(): void {

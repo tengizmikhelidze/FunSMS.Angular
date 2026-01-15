@@ -117,6 +117,33 @@
       "status": "Статус",
       "cost": "Стоимость"
     }
+  },
+  "admin": {
+    "sms": {
+      "title": "Админ - Управление SMS",
+      "subtitle": "Управление всеми SMS сообщениями в системе",
+      "allMessages": "Все SMS сообщения",
+      "total": "Всего",
+      "searchPhone": "Поиск по номеру",
+      "searchPhonePlaceholder": "Введите номер телефона",
+      "search": "Поиск",
+      "status": "Статус",
+      "allStatuses": "Все статусы",
+      "sentFilter": "Статус отправки",
+      "noMessages": "Сообщения не найдены",
+      "sendSms": "Отправить SMS",
+      "deleteSms": "Удалить SMS",
+      "table": {
+        "date": "Дата",
+        "user": "ID пользователя",
+        "recipient": "Получатель",
+        "sender": "Отправитель",
+        "message": "Сообщение",
+        "status": "Статус",
+        "cost": "Стоимость",
+        "actions": "Действия"
+      }
+    }
   }
 }
 

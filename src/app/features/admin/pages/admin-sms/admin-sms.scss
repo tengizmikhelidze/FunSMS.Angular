@@ -1,0 +1,160 @@
+.admin-container {
+  min-height: calc(100vh - 8rem);
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-base);
+  }
+}
+
+.admin-card {
+  :host ::ng-deep .p-card-header {
+    background: var(--surface-card);
+    border-bottom: 1px solid var(--surface-border);
+    padding: 1.5rem;
+  }
+
+  :host ::ng-deep .p-card-body {
+    padding: 1.5rem;
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-color);
+    margin: 0;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .total-count {
+    font-size: var(--font-size-sm);
+    color: var(--text-color-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+.filters-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--surface-ground);
+  border-radius: var(--border-radius);
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--text-color);
+    }
+
+    .search-input-group {
+      display: flex;
+      gap: 0.5rem;
+
+      input {
+        flex: 1;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .admin-sms-table {
+  .message-cell {
+    max-width: 300px;
+
+    .message-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .user-id {
+    font-family: monospace;
+    font-size: var(--font-size-xs);
+    color: var(--text-color-secondary);
+  }
+
+  .phone-number {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+  }
+
+  .cost {
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .empty-message {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-base);
+  }
+
+  th {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-color);
+    background: var(--surface-ground);
+  }
+
+  td {
+    color: var(--text-color);
+  }
+}
+
+@media (max-width: 1200px) {
+  .filters-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 1rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+}
+

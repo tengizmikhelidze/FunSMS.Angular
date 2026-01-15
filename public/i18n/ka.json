@@ -117,6 +117,33 @@
       "status": "სტატუსი",
       "cost": "ღირებულება"
     }
+  },
+  "admin": {
+    "sms": {
+      "title": "ადმინი - SMS მართვა",
+      "subtitle": "მართეთ ყველა SMS შეტყობინება სისტემაში",
+      "allMessages": "ყველა SMS შეტყობინება",
+      "total": "სულ",
+      "searchPhone": "ძიება ნომრით",
+      "searchPhonePlaceholder": "შეიყვანეთ ნომერი",
+      "search": "ძიება",
+      "status": "სტატუსი",
+      "allStatuses": "ყველა სტატუსი",
+      "sentFilter": "გაგზავნის სტატუსი",
+      "noMessages": "შეტყობინებები არ მოიძებნა",
+      "sendSms": "SMS გაგზავნა",
+      "deleteSms": "SMS წაშლა",
+      "table": {
+        "date": "თარიღი",
+        "user": "მომხმარებლის ID",
+        "recipient": "მიმღები",
+        "sender": "გამომგზავნი",
+        "message": "შეტყობინება",
+        "status": "სტატუსი",
+        "cost": "ღირებულება",
+        "actions": "მოქმედებები"
+      }
+    }
   }
 }
 

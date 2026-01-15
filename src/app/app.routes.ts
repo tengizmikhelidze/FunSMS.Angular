@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,11 @@ export const routes: Routes = [
     path: 'sms-history',
     loadChildren: () => import('./features/sms-history/sms-history.routes').then(m => m.smsHistoryRoutes),
     canActivate: [authGuard]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./features/admin/admin.routes').then(m => m.adminRoutes),
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: '**',
