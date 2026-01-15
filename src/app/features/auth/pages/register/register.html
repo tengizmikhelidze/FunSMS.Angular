@@ -3,49 +3,49 @@
 <div class="auth-container">
   <div class="auth-card">
     <div class="auth-header">
-      <h1>Create Account</h1>
-      <p>Sign up to get started</p>
+      <h1>ანგარიშის შექმნა</h1>
+      <p>დარეგისტრირდით დასაწყებად</p>
     </div>
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
       <div class="form-field">
-        <label for="name">Full Name</label>
+        <label for="name">სახელი და გვარი</label>
         <input
           pInputText
           id="name"
           formControlName="name"
           type="text"
-          placeholder="Enter your full name"
+          placeholder="შეიყვანეთ სახელი და გვარი"
           class="w-full"
           [class.ng-invalid]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
         />
         @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
-          <small class="error-message">Name is required</small>
+          <small class="error-message">სახელი სავალდებულოა</small>
         }
       </div>
 
       <div class="form-field">
-        <label for="email">Email</label>
+        <label for="email">ელ-ფოსტა</label>
         <input
           pInputText
           id="email"
           formControlName="email"
           type="email"
-          placeholder="Enter your email"
+          placeholder="შეიყვანეთ ელ-ფოსტა"
           class="w-full"
           [class.ng-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
         />
         @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
-          <small class="error-message">Valid email is required</small>
+          <small class="error-message">გთხოვთ შეიყვანოთ სწორი ელ-ფოსტა</small>
         }
       </div>
 
       <div class="form-field">
-        <label for="password">Password</label>
+        <label for="password">პაროლი</label>
         <p-password
           id="password"
           formControlName="password"
-          placeholder="Enter your password"
+          placeholder="შეიყვანეთ პაროლი"
           [toggleMask]="true"
           [feedback]="true"
           styleClass="w-full"
@@ -53,16 +53,16 @@
           [class.ng-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
         />
         @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
-          <small class="error-message">Password must be at least 6 characters</small>
+          <small class="error-message">პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო</small>
         }
       </div>
 
       <div class="form-field">
-        <label for="confirmPassword">Confirm Password</label>
+        <label for="confirmPassword">გაიმეორეთ პაროლი</label>
         <p-password
           id="confirmPassword"
           formControlName="confirmPassword"
-          placeholder="Confirm your password"
+          placeholder="გაიმეორეთ პაროლი"
           [toggleMask]="true"
           [feedback]="false"
           styleClass="w-full"
@@ -70,7 +70,7 @@
           [class.ng-invalid]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
         />
         @if (registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched) {
-          <small class="error-message">Passwords do not match</small>
+          <small class="error-message">პაროლები არ ემთხვევა</small>
         }
       </div>
 
@@ -83,14 +83,14 @@
       <button
         pButton
         type="submit"
-        label="Create Account"
+        label="დარეგისტრირება"
         [loading]="isLoading()"
         [disabled]="registerForm.invalid || isLoading()"
         class="w-full"
       ></button>
 
       <div class="auth-footer">
-        <p>Already have an account? <a routerLink="/auth/login">Sign in</a></p>
+        <p>უკვე გაქვთ ანგარიში? <a routerLink="/auth/login">შესვლა</a></p>
       </div>
     </form>
   </div>
