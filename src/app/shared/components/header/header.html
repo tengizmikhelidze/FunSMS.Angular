@@ -1,12 +1,10 @@
 <header class="app-header">
     <div class="header-container">
         <div class="header-logo">
-            <div class="logo-icon"
-                 data-fg-d3bl6="1.4:9.1702:/src/app/App.tsx:54:13:2087:138:e:div">
+            <div class="logo-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                     class="lucide lucide-message-circle w-6 h-6 text-indigo-600"
-                     data-fg-d3bl7="1.4:9.1702:/src/app/App.tsx:55:15:2153:53:e:MessageCircle::::::CcWz">
+                     class="lucide lucide-message-circle w-6 h-6 text-indigo-600">
                     <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
                 </svg>
             </div>
@@ -38,6 +36,7 @@
                         #menu
                         [model]="menuItems"
                         [popup]="true"
+                        [appendTo]="'body'"
                         styleClass="user-menu"
                     />
                 </div>
