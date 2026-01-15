@@ -68,9 +68,8 @@
 
 :host ::ng-deep .theme-toggle-button {
   .p-button {
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0;
+    height: auto;
+    padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
     transition: var(--transition-base);
 
