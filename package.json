@@ -5,7 +5,9 @@
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "build:prod": "ng build --configuration production --base-href /FunSMS.Angular/",
+    "deploy": "ng deploy --base-href=/FunSMS.Angular/"
   },
   "prettier": {
     "printWidth": 100,
@@ -39,6 +41,7 @@
     "@angular/build": "^20.3.9",
     "@angular/cli": "^20.3.9",
     "@angular/compiler-cli": "^20.3.0",
+    "angular-cli-ghpages": "^3.0.2",
     "typescript": "~5.9.2"
   }
 }
