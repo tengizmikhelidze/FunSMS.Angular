@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* ==========================================
+   IMPORT CSS VARIABLES (Design Tokens)
+   ========================================== */
+@use 'styles/variables.scss' as *;
+
 /* Custom Font - ALK Sanet */
 @font-face {
   font-family: 'ALK Sanet';
