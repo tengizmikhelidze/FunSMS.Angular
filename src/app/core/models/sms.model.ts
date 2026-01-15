@@ -12,15 +12,16 @@ export interface SmsMessage {
   sender_name: string;
   message_text: string;
   status: 'pending' | 'sent' | 'failed' | 'delivered';
+  sent_status: 0 | 1; // 0 = unsent, 1 = sent
   provider: string;
   provider_message_id?: string;
-  cost?: string;
+  cost?: number;
   error_message?: string;
-  scheduled_at?: Date;
-  sent_at?: Date;
-  delivered_at?: Date;
-  created_at: Date;
-  updated_at: Date;
+  scheduled_at?: string; // ISO date string
+  sent_at?: string; // ISO date string
+  delivered_at?: string; // ISO date string
+  created_at: string; // ISO date string
+  updated_at: string; // ISO date string
 }
 
 export interface MessageInfo {

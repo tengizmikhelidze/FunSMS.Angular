@@ -9,7 +9,7 @@ import {
   ProfileResponse,
   LoginCredentials,
   RegisterData
-} from '../models/user.model';
+} from '../models';
 import { environment } from '../../../environments/environment';
 
 @Injectable({

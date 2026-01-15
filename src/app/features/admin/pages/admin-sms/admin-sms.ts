@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from '../../../../shared/components/header/header';
 import { FooterComponent } from '../../../../shared/components/footer/footer';
 import { AdminService } from '../../../../core/services/admin.service';
-import { SmsMessage } from '../../../../core/models/sms.model';
+import { SmsMessage } from '../../../../core/models';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
@@ -81,7 +81,7 @@ export class AdminSmsComponent implements OnInit {
     };
 
     if (this.searchPhone()) {
-      params.phoneNumber = this.searchPhone();
+      params.recipient_phone = this.searchPhone();
     }
 
     if (this.selectedStatus() !== null) {
@@ -89,13 +89,14 @@ export class AdminSmsComponent implements OnInit {
     }
 
     if (this.selectedSentFilter() !== null) {
-      params.sent = this.selectedSentFilter();
+      params.sent_status = this.selectedSentFilter();
     }
 
     this.adminService.getAllSms(params).subscribe({
       next: (response) => {
-        this.messages.set(response.data);
-        this.totalMessages.set(response.pagination.total);
+        // Response structure: { success, data: { messages, pagination, filters } }
+        this.messages.set(response.data.messages);
+        this.totalMessages.set(response.data.pagination.total);
         this.isLoading.set(false);
       },
       error: (error) => {
@@ -205,6 +206,12 @@ export class AdminSmsComponent implements OnInit {
 
   formatDate(date: Date | string): string {
     return new Date(date).toLocaleString();
+  }
+
+  formatCost(cost: number | string | undefined): string {
+    if (!cost) return '-';
+    const numericCost = typeof cost === 'string' ? parseFloat(cost) : cost;
+    return isNaN(numericCost) ? '-' : '$' + numericCost.toFixed(4);
   }
 
   canSend(sms: SmsMessage): boolean {

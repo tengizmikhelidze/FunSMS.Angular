@@ -1,59 +1,14 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SmsMessage } from '../models/sms.model';
-import { User } from '../models/user.model';
-
-export interface GetSmsParams {
-  page?: number;
-  limit?: number;
-  status?: 'pending' | 'sent' | 'failed' | 'delivered';
-  sent?: boolean;
-  userId?: string;
-  phoneNumber?: string;
-  dateFrom?: string;
-  dateTo?: string;
-  sortBy?: string;
-  sortOrder?: 'ASC' | 'DESC';
-}
-
-export interface GetUsersParams {
-  page?: number;
-  limit?: number;
-  role?: 'user' | 'admin';
-  search?: string;
-  sortBy?: string;
-  sortOrder?: 'ASC' | 'DESC';
-}
-
-export interface UserListResponse {
-  success: boolean;
-  data: User[];
-  pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  };
-}
-
-export interface AdminSmsListResponse {
-  success: boolean;
-  data: SmsMessage[];
-  pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  };
-}
-
-export interface ApiResponse {
-  success: boolean;
-  message: string;
-  sms?: SmsMessage;
-  user?: User;
-}
+import { map } from 'rxjs/operators';
+import {
+  AdminSmsQueryParams,
+  AdminSmsListResponse,
+  AdminUsersQueryParams,
+  AdminUserListResponse,
+  AdminApiResponse
+} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +21,7 @@ export class AdminService {
    * Get all users (admin only)
    * GET /api/admin/users
    */
-  getAllUsers(params: GetUsersParams = {}): Observable<UserListResponse> {
+  getAllUsers(params: AdminUsersQueryParams = {}): Observable<AdminUserListResponse> {
     let httpParams = new HttpParams();
     Object.keys(params).forEach(key => {
       const value = (params as any)[key];
@@ -75,63 +30,85 @@ export class AdminService {
       }
     });
 
-    return this.http.get<UserListResponse>(`${this.API_URL}/users`, { params: httpParams });
+    return this.http.get<AdminUserListResponse>(`${this.API_URL}/users`, { params: httpParams });
   }
 
   /**
    * Get all SMS messages (admin only)
    * GET /api/admin/sms
    */
-  getAllSms(params: GetSmsParams = {}): Observable<AdminSmsListResponse> {
+  getAllSms(params: AdminSmsQueryParams = {}): Observable<AdminSmsListResponse> {
     let httpParams = new HttpParams();
+
+    // Convert page to offset (page 1 = offset 0)
+    if (params.page) {
+      const limit = params.limit || 20;
+      const offset = (params.page - 1) * limit;
+      httpParams = httpParams.set('offset', offset.toString());
+    }
+
+    // Add other parameters
     Object.keys(params).forEach(key => {
+      if (key === 'page') return; // Skip page as we converted it to offset
+
       const value = (params as any)[key];
       if (value !== undefined && value !== null) {
         httpParams = httpParams.set(key, value.toString());
       }
     });
 
-    return this.http.get<AdminSmsListResponse>(`${this.API_URL}/sms`, { params: httpParams });
+    return this.http.get<AdminSmsListResponse>(`${this.API_URL}/sms`, { params: httpParams }).pipe(
+      map(response => ({
+        ...response,
+        data: {
+          ...response.data,
+          messages: response.data.messages.map(msg => ({
+            ...msg,
+            cost: msg.cost ? (typeof msg.cost === 'string' ? parseFloat(msg.cost) : msg.cost) : undefined
+          }))
+        }
+      }))
+    );
   }
 
   /**
    * Send any SMS message (admin only)
    * POST /api/admin/sms/send/:id
    */
-  sendAnySms(smsId: string): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${this.API_URL}/sms/send/${smsId}`, {});
+  sendAnySms(smsId: string): Observable<AdminApiResponse> {
+    return this.http.post<AdminApiResponse>(`${this.API_URL}/sms/send/${smsId}`, {});
   }
 
   /**
    * Delete any SMS message (admin only)
    * DELETE /api/admin/sms/:id
    */
-  deleteAnySms(smsId: string): Observable<ApiResponse> {
-    return this.http.delete<ApiResponse>(`${this.API_URL}/sms/${smsId}`);
+  deleteAnySms(smsId: string): Observable<AdminApiResponse> {
+    return this.http.delete<AdminApiResponse>(`${this.API_URL}/sms/${smsId}`);
   }
 
   /**
    * Promote user to admin
    * PUT /api/admin/users/:id/promote
    */
-  promoteToAdmin(userId: string): Observable<ApiResponse> {
-    return this.http.put<ApiResponse>(`${this.API_URL}/users/${userId}/promote`, {});
+  promoteToAdmin(userId: string): Observable<AdminApiResponse> {
+    return this.http.put<AdminApiResponse>(`${this.API_URL}/users/${userId}/promote`, {});
   }
 
   /**
    * Demote admin to user
    * PUT /api/admin/users/:id/demote
    */
-  demoteToUser(userId: string): Observable<ApiResponse> {
-    return this.http.put<ApiResponse>(`${this.API_URL}/users/${userId}/demote`, {});
+  demoteToUser(userId: string): Observable<AdminApiResponse> {
+    return this.http.put<AdminApiResponse>(`${this.API_URL}/users/${userId}/demote`, {});
   }
 
   /**
    * Delete user (admin only)
    * DELETE /api/admin/users/:id
    */
-  deleteUser(userId: string): Observable<ApiResponse> {
-    return this.http.delete<ApiResponse>(`${this.API_URL}/users/${userId}`);
+  deleteUser(userId: string): Observable<AdminApiResponse> {
+    return this.http.delete<AdminApiResponse>(`${this.API_URL}/users/${userId}`);
   }
 }
 

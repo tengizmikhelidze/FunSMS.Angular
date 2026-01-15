@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import {
   SendSmsRequest,
   SendSmsResponse,
@@ -10,7 +10,7 @@ import {
   SmsBalanceResponse,
   PhoneValidationResponse,
   SmsMessage
-} from '../models/sms.model';
+} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,16 @@ export class SmsService {
 
     return this.http.get<SmsHistoryResponse>(`${this.API_URL}/history`, { params })
       .pipe(
+        map(response => ({
+          ...response,
+          data: {
+            ...response.data,
+            messages: response.data.messages.map(msg => ({
+              ...msg,
+              cost: msg.cost ? (typeof msg.cost === 'string' ? parseFloat(msg.cost) : msg.cost) : undefined
+            }))
+          }
+        })),
         catchError(this.handleError)
       );
   }
@@ -52,6 +62,15 @@ export class SmsService {
   getSmsById(id: string): Observable<{ success: boolean; data: { sms: SmsMessage } }> {
     return this.http.get<{ success: boolean; data: { sms: SmsMessage } }>(`${this.API_URL}/${id}`)
       .pipe(
+        map(response => ({
+          ...response,
+          data: {
+            sms: {
+              ...response.data.sms,
+              cost: response.data.sms.cost ? (typeof response.data.sms.cost === 'string' ? parseFloat(response.data.sms.cost) : response.data.sms.cost) : undefined
+            }
+          }
+        })),
         catchError(this.handleError)
       );
   }
