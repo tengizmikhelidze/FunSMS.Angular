@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MessageService } from 'primeng/api';
 
 import { routes } from './app.routes';
 import { providePrimeNG } from "primeng/config";
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptorFn])),
+    MessageService,
     provideTranslateService({
       defaultLanguage: 'ka'
     }),

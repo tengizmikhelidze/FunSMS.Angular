@@ -8,6 +8,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {CommonModule} from "@angular/common";
+import {MessageService} from 'primeng/api';
 
 interface PaymentBank {
     name: string;
@@ -33,6 +34,8 @@ interface PaymentBank {
 export class HomeComponent {
     private fb = inject(FormBuilder);
     private smsService = inject(SmsService);
+    private messageService = inject(MessageService);
+    private translateService = inject(TranslateService);
 
     isLoading = signal(false);
     uploadedFiles = signal<File[]>([]);
@@ -76,6 +79,17 @@ export class HomeComponent {
     onSubmit(): void {
         if (this.smsForm.invalid) {
             this.smsForm.markAllAsTouched();
+
+            // Show error toast
+            this.messageService.add({
+                severity: 'error',
+                summary: this.translateService.instant('home.form.errors.validationError'),
+                detail: this.translateService.instant('home.form.errors.validationMessage'),
+                life: 4000
+            });
+
+            // Scroll to first invalid field
+            this.scrollToFirstInvalidField();
             return;
         }
 
@@ -102,6 +116,17 @@ export class HomeComponent {
                 this.successMessage.set(response.message || 'SMS sent successfully!');
                 this.isLoading.set(false);
 
+                // Show success toast
+                this.messageService.add({
+                    severity: 'success',
+                    summary: this.translateService.instant('home.form.success.title'),
+                    detail: this.translateService.instant('home.form.success.message'),
+                    life: 5000
+                });
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
                 // Reset form after successful send
                 this.smsForm.reset();
                 this.uploadedFiles.set([]);
@@ -113,8 +138,36 @@ export class HomeComponent {
                 console.error('SMS send error:', error);
                 this.errorMessage.set(error.message || 'Failed to send SMS. Please try again.');
                 this.isLoading.set(false);
+
+                // Show error toast
+                this.messageService.add({
+                    severity: 'error',
+                    summary: this.translateService.instant('home.form.errors.sendError'),
+                    detail: error.message || this.translateService.instant('home.form.errors.sendMessage'),
+                    life: 5000
+                });
             }
         });
+    }
+
+    private scrollToFirstInvalidField(): void {
+        const firstInvalidControl = Object.keys(this.smsForm.controls).find(
+            key => this.smsForm.controls[key].invalid
+        );
+
+        if (firstInvalidControl) {
+            const invalidElement = document.querySelector(`[formControlName="${firstInvalidControl}"]`)
+                || document.getElementById(firstInvalidControl);
+
+            if (invalidElement) {
+                invalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Focus on the element after scrolling
+                setTimeout(() => {
+                    (invalidElement as HTMLElement).focus();
+                }, 500);
+            }
+        }
     }
 
     get characterCount() {

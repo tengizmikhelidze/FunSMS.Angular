@@ -99,7 +99,15 @@
         "messageRequired": "Message is required",
         "bankRequired": "Please select a bank",
         "receiptRequired": "Payment receipt is required",
-        "termsRequired": "Agreement to terms is required"
+        "termsRequired": "Agreement to terms is required",
+        "validationError": "Form Error",
+        "validationMessage": "Please fill in all required fields correctly",
+        "sendError": "Failed to Send",
+        "sendMessage": "Failed to send SMS. Please try again."
+      },
+      "success": {
+        "title": "Success!",
+        "message": "Your SMS has been sent successfully!"
       }
     }
   },
