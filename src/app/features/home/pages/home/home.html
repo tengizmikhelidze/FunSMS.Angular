@@ -1,7 +1,181 @@
 <app-header />
 
 <div class="home-container">
-  <h1>Home</h1>
-  <!-- SMS sending form and history will be implemented here -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">გაუგზავნე სამხიარულო SMS შენს მეგობრებს! 😄</h1>
+      <p class="hero-subtitle"> გაახარე ახლობლები უნიკალური შეტყობინებებით</p>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <p-card class="sms-form-card">
+      <ng-template pTemplate="header">
+        <div class="card-header">
+          <h2>SMS გაგზავნა</h2>
+          <p>შეავსე ყველა ველი SMS-ის გასაგზავნად</p>
+        </div>
+      </ng-template>
+
+      <form [formGroup]="smsForm" (ngSubmit)="onSubmit()" class="sms-form">
+        <!-- Sender Name -->
+        <div class="form-field">
+          <label for="senderName" class="field-label">
+            რა სახელით გსურთ SMS გაგზავნა? <span class="required">*</span>
+          </label>
+          <input
+            pInputText
+            id="senderName"
+            formControlName="senderName"
+            placeholder="მაგ: Giorgi"
+            class="w-full"
+            [class.ng-invalid]="smsForm.get('senderName')?.invalid && smsForm.get('senderName')?.touched"
+          />
+          @if (smsForm.get('senderName')?.invalid && smsForm.get('senderName')?.touched) {
+            <small class="error-message">
+              @if (smsForm.get('senderName')?.errors?.['required']) {
+                სახელი სავალდებულოა
+              }
+              @if (smsForm.get('senderName')?.errors?.['pattern']) {
+                გთხოვთ გამოიყენოთ მხოლოდ ლათინური ასოები
+              }
+            </small>
+          }
+        </div>
+
+        <!-- Recipient Number -->
+        <div class="form-field">
+          <label for="recipientNumber" class="field-label">
+            მიმღების ნომერი <span class="required">*</span>
+          </label>
+          <input
+            pInputText
+            id="recipientNumber"
+            formControlName="recipientNumber"
+            placeholder="5XXXXXXXX"
+            maxlength="9"
+            class="w-full"
+            [class.ng-invalid]="smsForm.get('recipientNumber')?.invalid && smsForm.get('recipientNumber')?.touched"
+          />
+          @if (smsForm.get('recipientNumber')?.invalid && smsForm.get('recipientNumber')?.touched) {
+            <small class="error-message">
+              @if (smsForm.get('recipientNumber')?.errors?.['required']) {
+                მობილურის ნომერი სავალდებულოა
+              }
+              @if (smsForm.get('recipientNumber')?.errors?.['pattern']) {
+                შეიყვანეთ 9 ციფრიანი ნომერი
+              }
+            </small>
+          }
+        </div>
+
+        <!-- Message -->
+        <div class="form-field">
+          <label for="message" class="field-label">
+            რა ტექსტის გაგზავნა გსურთ? <span class="required">*</span>
+          </label>
+          <textarea
+            id="message"
+            formControlName="message"
+            rows="5"
+            placeholder="დაწერეთ თქვენი შეტყობინება..."
+            class="w-full custom-textarea"
+            [class.ng-invalid]="smsForm.get('message')?.invalid && smsForm.get('message')?.touched"
+          ></textarea>
+          <div class="field-info">
+            <small class="character-count">{{ characterCount }}</small>
+            @if (smsForm.get('message')?.invalid && smsForm.get('message')?.touched) {
+              <small class="error-message">შეტყობინება სავალდებულოა</small>
+            }
+          </div>
+        </div>
+
+        <!-- Payment Bank -->
+        <div class="form-field">
+          <label for="paymentBank" class="field-label">
+            გადახდა <span class="required">*</span>
+          </label>
+          <select
+            id="paymentBank"
+            formControlName="paymentBank"
+            class="w-full custom-select"
+            [class.ng-invalid]="smsForm.get('paymentBank')?.invalid && smsForm.get('paymentBank')?.touched"
+          >
+            <option [ngValue]="null" disabled selected>აირჩიეთ ბანკი</option>
+            @for (bank of banks; track bank.code) {
+              <option [ngValue]="bank">{{ bank.name }}</option>
+            }
+          </select>
+          @if (smsForm.get('paymentBank')?.invalid && smsForm.get('paymentBank')?.touched) {
+            <small class="error-message">აირჩიეთ ბანკი</small>
+          }
+        </div>
+
+        <!-- Payment Receipt Upload -->
+        <div class="form-field">
+          <label class="field-label">
+            ატვირთე გადახდის ქვითარი <span class="required">*</span>
+          </label>
+          <div class="custom-file-upload">
+            <input
+              type="file"
+              id="paymentReceipt"
+              accept="image/*"
+              (change)="onFileSelect($event)"
+              class="file-input"
+            />
+            <label for="paymentReceipt" class="file-label">
+              <i class="pi pi-upload"></i>
+              <span>აირჩიეთ ფაილი</span>
+            </label>
+          </div>
+          @if (uploadedFiles().length > 0) {
+            <div class="uploaded-file">
+              <i class="pi pi-file"></i>
+              <span>{{ uploadedFiles()[0].name }}</span>
+              <button type="button" (click)="onFileRemove()" class="remove-file">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+          }
+          @if (smsForm.get('paymentReceipt')?.invalid && smsForm.get('paymentReceipt')?.touched) {
+            <small class="error-message">გადახდის ქვითარი სავალდებულოა</small>
+          }
+        </div>
+
+        <!-- Terms Checkbox -->
+        <div class="form-field checkbox-field">
+          <input
+            type="checkbox"
+            formControlName="agreeToTerms"
+            id="agreeToTerms"
+            class="custom-checkbox"
+          />
+          <label for="agreeToTerms" class="checkbox-label">
+            ვეთანხმები წესებს და მომსახურების პოლიტიკას,
+            <a href="/terms" target="_blank" class="terms-link">ნახე წესები და პირობები</a>
+          </label>
+          @if (smsForm.get('agreeToTerms')?.invalid && smsForm.get('agreeToTerms')?.touched) {
+            <small class="error-message">თანხმობა წესებთან სავალდებულოა</small>
+          }
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-actions">
+          <button
+            pButton
+            type="submit"
+            label="SMS-ის გაგზავნა"
+            icon="pi pi-send"
+            [loading]="isLoading()"
+            [disabled]="smsForm.invalid || isLoading()"
+            class="submit-button"
+          ></button>
+        </div>
+      </form>
+    </p-card>
+  </div>
 </div>
+
+<app-footer />
 

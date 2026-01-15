@@ -1,7 +1,370 @@
 .home-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+  min-height: calc(100vh - 64px);
+  background: var(--surface-ground);
 }
 
+// Hero Section
+.hero-section {
+  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  padding: 4rem 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 1rem 0;
+  line-height: var(--line-height-tight);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-lg);
+  margin: 0;
+  opacity: 0.95;
+  line-height: var(--line-height-relaxed);
+}
+
+// Form Section
+.form-section {
+  max-width: 600px;
+  margin: calc(-1 * var(--spacing-16)) auto auto;
+  padding-bottom: var(--spacing-16);
+  position: relative;
+  z-index: 1;
+}
+
+.sms-form-card {
+  box-shadow: var(--card-shadow);
+  border-radius: var(--border-radius-lg);
+}
+
+.card-header {
+  text-align: center;
+
+  h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    color: var(--text-color-secondary);
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+}
+
+// Form Styles
+.sms-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-color);
+  font-size: var(--font-size-sm);
+
+  .required {
+    color: var(--color-error-600);
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+
+.error-message {
+  color: var(--color-error-600);
+  font-size: var(--font-size-xs);
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.field-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.character-count {
+  color: var(--text-color-secondary);
+  font-size: var(--font-size-xs);
+}
+
+// Checkbox Field
+.checkbox-field {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+
+  .checkbox-label {
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    cursor: pointer;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .terms-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// File Upload
+.uploaded-file {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--surface-section);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--border-radius);
+  margin-top: 0.5rem;
+
+  i.pi-file {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+  }
+
+  span {
+    flex: 1;
+    color: var(--text-color);
+    font-size: var(--font-size-sm);
+  }
+
+  .remove-file {
+    background: none;
+    border: none;
+    color: var(--color-error-600);
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+
+    &:hover {
+      color: var(--color-error-700);
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Custom Form Controls
+.custom-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  resize: vertical;
+  min-height: 120px;
+  transition: var(--transition-base);
+
+  &:hover {
+    border-color: var(--primary-color);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: var(--color-error-600);
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+  }
+}
+
+.custom-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  background: white;
+  cursor: pointer;
+  transition: var(--transition-base);
+
+  &:hover {
+    border-color: var(--primary-color);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: var(--color-error-600);
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+  }
+}
+
+.custom-file-upload {
+  position: relative;
+
+  .file-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+    transition: var(--transition-base);
+
+    &:hover {
+      background: var(--primary-color-hover);
+    }
+
+    i {
+      font-size: 1rem;
+    }
+  }
+}
+
+.custom-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  border-radius: var(--border-radius-sm);
+  border: 2px solid var(--surface-border);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  accent-color: var(--primary-color);
+
+  &:checked {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  &:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}
+
+// Form Actions
+.form-actions {
+  margin-top: 1rem;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+// PrimeNG Component Overrides
+:host ::ng-deep {
+  .p-card-header {
+    background: var(--surface-card);
+    border-bottom: 1px solid var(--surface-border);
+    padding: 1.5rem;
+  }
+
+  .p-card-body {
+    padding: 2rem 1.5rem;
+  }
+
+  .p-inputtext {
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+
+    &:enabled:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+
+    &.ng-invalid.ng-touched {
+      border-color: var(--color-error-600);
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      }
+    }
+  }
+
+  .p-button {
+    border-radius: var(--border-radius);
+    transition: var(--transition-base);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .form-section {
+    margin: -2rem auto 2rem;
+    padding: 0 1rem;
+  }
+
+  :host ::ng-deep .p-card-body {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .checkbox-field {
+    align-items: flex-start;
+  }
+}
 
