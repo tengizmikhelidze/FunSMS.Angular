@@ -38,11 +38,11 @@ export class HeaderComponent {
   });
 
   themeIcon = computed(() => {
-    return this.currentTheme() === 'dark' ? 'pi pi-sun' : 'pi pi-moon';
+    return this.currentTheme() === 'dark' ? 'pi pi-moon' : 'pi pi-sun';
   });
 
   themeLabel = computed(() => {
-    return this.currentTheme() === 'dark' ? 'Light Mode' : 'Dark Mode';
+    return this.currentTheme() === 'dark' ? 'Dark Mode' : 'Light Mode';
   });
 
   menuItems: MenuItem[] = [
