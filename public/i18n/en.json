@@ -102,6 +102,21 @@
         "termsRequired": "Agreement to terms is required"
       }
     }
+  },
+  "smsHistory": {
+    "title": "SMS History",
+    "subtitle": "View all your sent SMS messages",
+    "tableTitle": "Sent Messages",
+    "total": "Total",
+    "noMessages": "No messages found",
+    "table": {
+      "date": "Date",
+      "recipient": "Recipient",
+      "sender": "Sender Name",
+      "message": "Message",
+      "status": "Status",
+      "cost": "Cost"
+    }
   }
 }
 

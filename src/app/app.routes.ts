@@ -17,6 +17,11 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'sms-history',
+    loadChildren: () => import('./features/sms-history/sms-history.routes').then(m => m.smsHistoryRoutes),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }

@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal, computed} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {HeaderComponent} from '../../../../shared/components/header/header';
 import {FooterComponent} from '../../../../shared/components/footer/footer';
+import {SmsService} from '../../../../core/services/sms.service';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
@@ -31,10 +32,12 @@ interface PaymentBank {
 })
 export class HomeComponent {
     private fb = inject(FormBuilder);
-    private translate = inject(TranslateService);
+    private smsService = inject(SmsService);
 
     isLoading = signal(false);
     uploadedFiles = signal<File[]>([]);
+    errorMessage = signal<string>('');
+    successMessage = signal<string>('');
 
     banks: PaymentBank[] = [
         {name: 'home.form.banks.bog', code: 'BOG'},
@@ -42,12 +45,18 @@ export class HomeComponent {
     ];
 
     smsForm: FormGroup = this.fb.group({
-        senderName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
-        recipientNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
-        message: ['', [Validators.required, Validators.maxLength(160)]],
+        senderName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{3,11}$/)]],
+        recipientNumber: ['', [Validators.required, Validators.pattern(/^[5][0-9]{8}$/)]],
+        message: ['', [Validators.required, Validators.maxLength(1000)]],
         paymentBank: [null, Validators.required],
         paymentReceipt: [null, Validators.required],
         agreeToTerms: [false, Validators.requiredTrue]
+    });
+
+    // Calculate message info
+    messageInfo = computed(() => {
+        const message = this.smsForm.get('message')?.value || '';
+        return this.smsService.calculateMessageInfo(message);
     });
 
     onFileSelect(event: Event): void {
@@ -71,30 +80,48 @@ export class HomeComponent {
         }
 
         this.isLoading.set(true);
+        this.errorMessage.set('');
+        this.successMessage.set('');
 
-        const formData = new FormData();
-        formData.append('senderName', this.smsForm.value.senderName);
-        formData.append('recipientNumber', this.smsForm.value.recipientNumber);
-        formData.append('message', this.smsForm.value.message);
-        formData.append('paymentBank', this.smsForm.value.paymentBank.code);
+        const formValue = this.smsForm.value;
 
-        if (this.uploadedFiles().length > 0) {
-            formData.append('paymentReceipt', this.uploadedFiles()[0]);
-        }
+        // Format phone number to +995XXXXXXXXX
+        const phone = this.smsService.formatGeorgianPhone(formValue.recipientNumber);
 
-        // TODO: Send to backend
-        console.log('Form submitted:', this.smsForm.value);
+        // Prepare SMS request
+        const smsRequest = {
+            phone: phone,
+            senderName: formValue.senderName,
+            message: formValue.message
+        };
 
-        setTimeout(() => {
-            this.isLoading.set(false);
-            this.smsForm.reset();
-            this.uploadedFiles.set([]);
-        }, 2000);
+        // Send SMS
+        this.smsService.sendSms(smsRequest).subscribe({
+            next: (response) => {
+                console.log('SMS sent successfully:', response);
+                this.successMessage.set(response.message || 'SMS sent successfully!');
+                this.isLoading.set(false);
+
+                // Reset form after successful send
+                this.smsForm.reset();
+                this.uploadedFiles.set([]);
+
+                // Clear success message after 5 seconds
+                setTimeout(() => this.successMessage.set(''), 5000);
+            },
+            error: (error) => {
+                console.error('SMS send error:', error);
+                this.errorMessage.set(error.message || 'Failed to send SMS. Please try again.');
+                this.isLoading.set(false);
+            }
+        });
     }
 
     get characterCount() {
-        const messageLength = this.smsForm.get('message')?.value?.length || 0;
-        return `${messageLength}/160`;
+        const info = this.messageInfo();
+        return `${info.length}/1000 (${info.parts} SMS, ${info.charset})`;
     }
 }
+
+
 

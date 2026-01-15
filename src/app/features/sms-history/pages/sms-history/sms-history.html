@@ -1,0 +1,63 @@
+<app-header />
+
+<div class="history-container">
+  <div class="history-header">
+    <h1>{{ 'smsHistory.title' | translate }}</h1>
+    <p>{{ 'smsHistory.subtitle' | translate }}</p>
+  </div>
+
+  <p-card class="history-card">
+    <ng-template pTemplate="header">
+      <div class="card-header">
+        <h2>{{ 'smsHistory.tableTitle' | translate }}</h2>
+        <div class="total-count">
+          {{ 'smsHistory.total' | translate }}: {{ totalMessages() }}
+        </div>
+      </div>
+    </ng-template>
+
+    <p-table
+      [value]="messages()"
+      [loading]="isLoading()"
+      [paginator]="true"
+      [rows]="pageSize()"
+      [totalRecords]="totalMessages()"
+      [lazy]="true"
+      (onLazyLoad)="onPageChange($event)"
+      styleClass="sms-history-table"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{ 'smsHistory.table.date' | translate }}</th>
+          <th>{{ 'smsHistory.table.recipient' | translate }}</th>
+          <th>{{ 'smsHistory.table.sender' | translate }}</th>
+          <th>{{ 'smsHistory.table.message' | translate }}</th>
+          <th>{{ 'smsHistory.table.status' | translate }}</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-sms>
+        <tr>
+          <td>{{ formatDate(sms.sent_at || sms.created_at) }}</td>
+          <td>{{ sms.recipient_phone }}</td>
+          <td>{{ sms.sender_name }}</td>
+          <td class="message-cell">{{ sms.message_text }}</td>
+          <td>
+            <p-tag [severity]="getStatusSeverity(sms.status)" [value]="sms.status"></p-tag>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6" class="empty-message">
+            {{ 'smsHistory.noMessages' | translate }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>
+
+<app-footer />
+

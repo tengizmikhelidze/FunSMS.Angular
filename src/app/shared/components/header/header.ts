@@ -86,7 +86,7 @@ export class HeaderComponent {
   }
 
   navigateToHistory(): void {
-    this.router.navigate(['/history']);
+    this.router.navigate(['/sms-history']);
   }
 
   logout(): void {
