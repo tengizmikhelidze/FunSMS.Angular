@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, computed } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, computed, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
@@ -6,7 +6,7 @@ import { ThemeService } from '../../../core/services/theme.service';
 import { LanguageService } from '../../../core/services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { AvatarModule } from 'primeng/avatar';
-import { MenuModule } from 'primeng/menu';
+import { Menu, MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MenuItem } from 'primeng/api';
@@ -30,6 +30,8 @@ export class HeaderComponent {
   private router = inject(Router);
   protected themeService = inject(ThemeService);
   protected languageService = inject(LanguageService);
+
+  @ViewChild('menu') menu?: Menu;
 
   currentUser = this.authService.getCurrentUser();
   currentTheme = this.themeService.theme;
@@ -82,22 +84,31 @@ export class HeaderComponent {
   ];
 
   navigateToAccount(): void {
-    this.router.navigate(['/account']);
+    this.menu?.hide();
+    setTimeout(() => this.router.navigate(['/account']), 100);
   }
 
   navigateToHistory(): void {
-    this.router.navigate(['/sms-history']);
+    this.menu?.hide();
+    setTimeout(() => this.router.navigate(['/sms-history']), 100);
+  }
+
+  navigateToHome(): void {
+    this.router.navigate(['/home']);
   }
 
   logout(): void {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.router.navigate(['/auth/login']);
-      },
-      error: () => {
-        this.router.navigate(['/auth/login']);
-      }
-    });
+    this.menu?.hide();
+    setTimeout(() => {
+      this.authService.logout().subscribe({
+        next: () => {
+          this.router.navigate(['/auth/login']);
+        },
+        error: () => {
+          this.router.navigate(['/auth/login']);
+        }
+      });
+    }, 100);
   }
 }
 
