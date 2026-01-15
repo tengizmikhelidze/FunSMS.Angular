@@ -6,6 +6,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { HeaderComponent } from '../../../../shared/components/header/header';
+import { FooterComponent } from '../../../../shared/components/footer/footer';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,9 @@ import { CardModule } from 'primeng/card';
     PasswordModule,
     ButtonModule,
     CardModule,
-    RouterLink
+    RouterLink,
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',

@@ -1,0 +1,13 @@
+.app-footer {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: var(--surface-card);
+  border-top: 1px solid var(--surface-border);
+
+  p {
+    margin: 0;
+    color: var(--text-color-secondary);
+    font-size: 0.875rem;
+  }
+}
+
