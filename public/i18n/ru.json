@@ -1,0 +1,107 @@
+{
+  "common": {
+    "loading": "Загрузка...",
+    "submit": "Отправить",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "back": "Назад",
+    "next": "Далее",
+    "yes": "Да",
+    "no": "Нет",
+    "required": "Обязательно"
+  },
+  "header": {
+    "title": "FunSMS",
+    "subtitle": "Отправляй смех, а не спам",
+    "menu": {
+      "account": "Аккаунт",
+      "smsHistory": "История SMS",
+      "logout": "Выход"
+    },
+    "theme": {
+      "light": "Светлая",
+      "dark": "Тёмная"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 FunSMS. Отправляй улыбки, а не спам. Используй ответственно! 😊"
+  },
+  "auth": {
+    "login": {
+      "title": "Добро пожаловать!",
+      "subtitle": "Войдите в свой аккаунт",
+      "email": "Электронная почта",
+      "emailPlaceholder": "Введите электронную почту",
+      "password": "Пароль",
+      "passwordPlaceholder": "Введите пароль",
+      "submit": "Войти",
+      "noAccount": "Нет аккаунта?",
+      "register": "Зарегистрироваться",
+      "errors": {
+        "emailRequired": "Пожалуйста, введите корректный email!",
+        "passwordRequired": "Пароль обязателен!"
+      }
+    },
+    "register": {
+      "title": "Создать аккаунт",
+      "subtitle": "Зарегистрируйтесь, чтобы начать",
+      "name": "Имя и фамилия",
+      "namePlaceholder": "Введите имя и фамилию",
+      "email": "Электронная почта",
+      "emailPlaceholder": "Введите электронную почту",
+      "password": "Пароль",
+      "passwordPlaceholder": "Введите пароль",
+      "confirmPassword": "Подтвердите пароль",
+      "confirmPasswordPlaceholder": "Повторите пароль",
+      "submit": "Зарегистрироваться",
+      "hasAccount": "Уже есть аккаунт?",
+      "login": "Войти",
+      "errors": {
+        "nameRequired": "Имя обязательно",
+        "emailRequired": "Пожалуйста, введите корректный email",
+        "passwordRequired": "Пароль должен содержать минимум 6 символов",
+        "passwordMismatch": "Пароли не совпадают"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Отправляй смешные SMS друзьям! 😄",
+      "subtitle": "Удиви и порадуй близких уникальными сообщениями"
+    },
+    "form": {
+      "title": "Отправить SMS",
+      "subtitle": "Заполните все поля для отправки SMS",
+      "senderName": "От какого имени отправить SMS?",
+      "senderNamePlaceholder": "напр: Giorgi",
+      "recipientNumber": "Номер получателя",
+      "recipientNumberPlaceholder": "5XXXXXXXX",
+      "message": "Какой текст хотите отправить?",
+      "messagePlaceholder": "Напишите ваше сообщение...",
+      "payment": "Оплата",
+      "paymentPlaceholder": "Выберите банк",
+      "paymentReceipt": "Загрузите квитанцию об оплате",
+      "paymentReceiptButton": "Выбрать файл",
+      "terms": "Я согласен с правилами и политикой сервиса,",
+      "termsLink": "Смотреть правила и условия",
+      "submit": "Отправить SMS",
+      "banks": {
+        "bog": "Bank of Georgia",
+        "tbc": "TBC Bank"
+      },
+      "errors": {
+        "senderNameRequired": "Имя обязательно",
+        "senderNamePattern": "Используйте только латинские буквы",
+        "recipientRequired": "Номер телефона обязателен",
+        "recipientPattern": "Введите 9-значный номер",
+        "messageRequired": "Сообщение обязательно",
+        "bankRequired": "Выберите банк",
+        "receiptRequired": "Квитанция об оплате обязательна",
+        "termsRequired": "Необходимо согласие с правилами"
+      }
+    }
+  }
+}
+

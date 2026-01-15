@@ -3,49 +3,49 @@
 <div class="auth-container">
   <div class="auth-card">
     <div class="auth-header">
-      <h1>ანგარიშის შექმნა</h1>
-      <p>დარეგისტრირდით დასაწყებად</p>
+      <h1>{{ 'auth.register.title' | translate }}</h1>
+      <p>{{ 'auth.register.subtitle' | translate }}</p>
     </div>
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
       <div class="form-field">
-        <label for="name">სახელი და გვარი</label>
+        <label for="name">{{ 'auth.register.name' | translate }}</label>
         <input
           pInputText
           id="name"
           formControlName="name"
           type="text"
-          placeholder="შეიყვანეთ სახელი და გვარი"
+          [placeholder]="'auth.register.namePlaceholder' | translate"
           class="w-full"
           [class.ng-invalid]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
         />
         @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
-          <small class="error-message">სახელი სავალდებულოა</small>
+          <small class="error-message">{{ 'auth.register.errors.nameRequired' | translate }}</small>
         }
       </div>
 
       <div class="form-field">
-        <label for="email">ელ-ფოსტა</label>
+        <label for="email">{{ 'auth.register.email' | translate }}</label>
         <input
           pInputText
           id="email"
           formControlName="email"
           type="email"
-          placeholder="შეიყვანეთ ელ-ფოსტა"
+          [placeholder]="'auth.register.emailPlaceholder' | translate"
           class="w-full"
           [class.ng-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
         />
         @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
-          <small class="error-message">გთხოვთ შეიყვანოთ სწორი ელ-ფოსტა</small>
+          <small class="error-message">{{ 'auth.register.errors.emailRequired' | translate }}</small>
         }
       </div>
 
       <div class="form-field">
-        <label for="password">პაროლი</label>
+        <label for="password">{{ 'auth.register.password' | translate }}</label>
         <p-password
           id="password"
           formControlName="password"
-          placeholder="შეიყვანეთ პაროლი"
+          [placeholder]="'auth.register.passwordPlaceholder' | translate"
           [toggleMask]="true"
           [feedback]="true"
           styleClass="w-full"
@@ -53,16 +53,16 @@
           [class.ng-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
         />
         @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
-          <small class="error-message">პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო</small>
+          <small class="error-message">{{ 'auth.register.errors.passwordRequired' | translate }}</small>
         }
       </div>
 
       <div class="form-field">
-        <label for="confirmPassword">გაიმეორეთ პაროლი</label>
+        <label for="confirmPassword">{{ 'auth.register.confirmPassword' | translate }}</label>
         <p-password
           id="confirmPassword"
           formControlName="confirmPassword"
-          placeholder="გაიმეორეთ პაროლი"
+          [placeholder]="'auth.register.confirmPasswordPlaceholder' | translate"
           [toggleMask]="true"
           [feedback]="false"
           styleClass="w-full"
@@ -70,7 +70,7 @@
           [class.ng-invalid]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
         />
         @if (registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched) {
-          <small class="error-message">პაროლები არ ემთხვევა</small>
+          <small class="error-message">{{ 'auth.register.errors.passwordMismatch' | translate }}</small>
         }
       </div>
 
@@ -83,14 +83,14 @@
       <button
         pButton
         type="submit"
-        label="დარეგისტრირება"
+        [label]="'auth.register.submit' | translate"
         [loading]="isLoading()"
         [disabled]="registerForm.invalid || isLoading()"
         class="w-full"
       ></button>
 
       <div class="auth-footer">
-        <p>უკვე გაქვთ ანგარიში? <a routerLink="/auth/login">შესვლა</a></p>
+        <p>{{ 'auth.register.hasAccount' | translate }} <a routerLink="/auth/login">{{ 'auth.register.login' | translate }}</a></p>
       </div>
     </form>
   </div>

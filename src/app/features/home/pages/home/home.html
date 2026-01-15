@@ -3,8 +3,8 @@
 <div class="home-container">
   <div class="hero-section">
     <div class="hero-content">
-      <h1 class="hero-title">გაუგზავნე სამხიარულო SMS შენს მეგობრებს! 😄</h1>
-      <p class="hero-subtitle"> გაახარე ახლობლები უნიკალური შეტყობინებებით</p>
+      <h1 class="hero-title">{{ 'home.hero.title' | translate }}</h1>
+      <p class="hero-subtitle">{{ 'home.hero.subtitle' | translate }}</p>
     </div>
   </div>
 
@@ -12,8 +12,8 @@
     <p-card class="sms-form-card">
       <ng-template pTemplate="header">
         <div class="card-header">
-          <h2>SMS გაგზავნა</h2>
-          <p>შეავსე ყველა ველი SMS-ის გასაგზავნად</p>
+          <h2>{{ 'home.form.title' | translate }}</h2>
+          <p>{{ 'home.form.subtitle' | translate }}</p>
         </div>
       </ng-template>
 
@@ -21,23 +21,23 @@
         <!-- Sender Name -->
         <div class="form-field">
           <label for="senderName" class="field-label">
-            რა სახელით გსურთ SMS გაგზავნა? <span class="required">*</span>
+            {{ 'home.form.senderName' | translate }} <span class="required">*</span>
           </label>
           <input
             pInputText
             id="senderName"
             formControlName="senderName"
-            placeholder="მაგ: Giorgi"
+            [placeholder]="'home.form.senderNamePlaceholder' | translate"
             class="w-full"
             [class.ng-invalid]="smsForm.get('senderName')?.invalid && smsForm.get('senderName')?.touched"
           />
           @if (smsForm.get('senderName')?.invalid && smsForm.get('senderName')?.touched) {
             <small class="error-message">
               @if (smsForm.get('senderName')?.errors?.['required']) {
-                სახელი სავალდებულოა
+                {{ 'home.form.errors.senderNameRequired' | translate }}
               }
               @if (smsForm.get('senderName')?.errors?.['pattern']) {
-                გთხოვთ გამოიყენოთ მხოლოდ ლათინური ასოები
+                {{ 'home.form.errors.senderNamePattern' | translate }}
               }
             </small>
           }
@@ -46,13 +46,13 @@
         <!-- Recipient Number -->
         <div class="form-field">
           <label for="recipientNumber" class="field-label">
-            მიმღების ნომერი <span class="required">*</span>
+            {{ 'home.form.recipientNumber' | translate }} <span class="required">*</span>
           </label>
           <input
             pInputText
             id="recipientNumber"
             formControlName="recipientNumber"
-            placeholder="5XXXXXXXX"
+            [placeholder]="'home.form.recipientNumberPlaceholder' | translate"
             maxlength="9"
             class="w-full"
             [class.ng-invalid]="smsForm.get('recipientNumber')?.invalid && smsForm.get('recipientNumber')?.touched"
@@ -60,10 +60,10 @@
           @if (smsForm.get('recipientNumber')?.invalid && smsForm.get('recipientNumber')?.touched) {
             <small class="error-message">
               @if (smsForm.get('recipientNumber')?.errors?.['required']) {
-                მობილურის ნომერი სავალდებულოა
+                {{ 'home.form.errors.recipientRequired' | translate }}
               }
               @if (smsForm.get('recipientNumber')?.errors?.['pattern']) {
-                შეიყვანეთ 9 ციფრიანი ნომერი
+                {{ 'home.form.errors.recipientPattern' | translate }}
               }
             </small>
           }
@@ -72,20 +72,20 @@
         <!-- Message -->
         <div class="form-field">
           <label for="message" class="field-label">
-            რა ტექსტის გაგზავნა გსურთ? <span class="required">*</span>
+            {{ 'home.form.message' | translate }} <span class="required">*</span>
           </label>
           <textarea
             id="message"
             formControlName="message"
             rows="5"
-            placeholder="დაწერეთ თქვენი შეტყობინება..."
+            [placeholder]="'home.form.messagePlaceholder' | translate"
             class="w-full custom-textarea"
             [class.ng-invalid]="smsForm.get('message')?.invalid && smsForm.get('message')?.touched"
           ></textarea>
           <div class="field-info">
             <small class="character-count">{{ characterCount }}</small>
             @if (smsForm.get('message')?.invalid && smsForm.get('message')?.touched) {
-              <small class="error-message">შეტყობინება სავალდებულოა</small>
+              <small class="error-message">{{ 'home.form.errors.messageRequired' | translate }}</small>
             }
           </div>
         </div>
@@ -93,7 +93,7 @@
         <!-- Payment Bank -->
         <div class="form-field">
           <label for="paymentBank" class="field-label">
-            გადახდა <span class="required">*</span>
+            {{ 'home.form.payment' | translate }} <span class="required">*</span>
           </label>
           <select
             id="paymentBank"
@@ -101,20 +101,20 @@
             class="w-full custom-select"
             [class.ng-invalid]="smsForm.get('paymentBank')?.invalid && smsForm.get('paymentBank')?.touched"
           >
-            <option [ngValue]="null" disabled selected>აირჩიეთ ბანკი</option>
+            <option [ngValue]="null" disabled selected>{{ 'home.form.paymentPlaceholder' | translate }}</option>
             @for (bank of banks; track bank.code) {
-              <option [ngValue]="bank">{{ bank.name }}</option>
+              <option [ngValue]="bank">{{ bank.name | translate }}</option>
             }
           </select>
           @if (smsForm.get('paymentBank')?.invalid && smsForm.get('paymentBank')?.touched) {
-            <small class="error-message">აირჩიეთ ბანკი</small>
+            <small class="error-message">{{ 'home.form.errors.bankRequired' | translate }}</small>
           }
         </div>
 
         <!-- Payment Receipt Upload -->
         <div class="form-field">
           <label class="field-label">
-            ატვირთე გადახდის ქვითარი <span class="required">*</span>
+            {{ 'home.form.paymentReceipt' | translate }} <span class="required">*</span>
           </label>
           <div class="custom-file-upload">
             <input
@@ -126,7 +126,7 @@
             />
             <label for="paymentReceipt" class="file-label">
               <i class="pi pi-upload"></i>
-              <span>აირჩიეთ ფაილი</span>
+              <span>{{ 'home.form.paymentReceiptButton' | translate }}</span>
             </label>
           </div>
           @if (uploadedFiles().length > 0) {
@@ -139,7 +139,7 @@
             </div>
           }
           @if (smsForm.get('paymentReceipt')?.invalid && smsForm.get('paymentReceipt')?.touched) {
-            <small class="error-message">გადახდის ქვითარი სავალდებულოა</small>
+            <small class="error-message">{{ 'home.form.errors.receiptRequired' | translate }}</small>
           }
         </div>
 
@@ -152,11 +152,11 @@
             class="custom-checkbox"
           />
           <label for="agreeToTerms" class="checkbox-label">
-            ვეთანხმები წესებს და მომსახურების პოლიტიკას,
-            <a href="/terms" target="_blank" class="terms-link">ნახე წესები და პირობები</a>
+            {{ 'home.form.terms' | translate }}
+            <a href="/terms" target="_blank" class="terms-link">{{ 'home.form.termsLink' | translate }}</a>
           </label>
           @if (smsForm.get('agreeToTerms')?.invalid && smsForm.get('agreeToTerms')?.touched) {
-            <small class="error-message">თანხმობა წესებთან სავალდებულოა</small>
+            <small class="error-message">{{ 'home.form.errors.termsRequired' | translate }}</small>
           }
         </div>
 
@@ -165,7 +165,7 @@
           <button
             pButton
             type="submit"
-            label="SMS-ის გაგზავნა"
+            [label]="'home.form.submit' | translate"
             icon="pi pi-send"
             [loading]="isLoading()"
             [disabled]="smsForm.invalid || isLoading()"

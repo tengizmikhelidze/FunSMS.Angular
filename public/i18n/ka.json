@@ -1,0 +1,107 @@
+{
+  "common": {
+    "loading": "იტვირთება...",
+    "submit": "გაგზავნა",
+    "cancel": "გაუქმება",
+    "save": "შენახვა",
+    "delete": "წაშლა",
+    "edit": "რედაქტირება",
+    "back": "უკან",
+    "next": "შემდეგი",
+    "yes": "დიახ",
+    "no": "არა",
+    "required": "სავალდებულო"
+  },
+  "header": {
+    "title": "FunSMS",
+    "subtitle": "გაგზავნე სიცილი, არა სპამი",
+    "menu": {
+      "account": "ანგარიში",
+      "smsHistory": "SMS ისტორია",
+      "logout": "გასვლა"
+    },
+    "theme": {
+      "light": "ნათელი",
+      "dark": "მუქი"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 FunSMS. გაგზავნე ღიმილი, არა სპამი. გამოიყენე პასუხისმგებლობით! 😊"
+  },
+  "auth": {
+    "login": {
+      "title": "მოგესალმებით!",
+      "subtitle": "შედით თქვენს ანგარიშში",
+      "email": "ელ-ფოსტა",
+      "emailPlaceholder": "შეიყვანეთ ელ-ფოსტა",
+      "password": "პაროლი",
+      "passwordPlaceholder": "შეიყვანეთ პაროლი",
+      "submit": "შესვლა",
+      "noAccount": "არ გაქვთ ანგარიში?",
+      "register": "დარეგისტრირდით",
+      "errors": {
+        "emailRequired": "გთხოვთ შეიყვანოთ სწორი ელ-ფოსტა!",
+        "passwordRequired": "პაროლი სავალდებულოა!"
+      }
+    },
+    "register": {
+      "title": "ანგარიშის შექმნა",
+      "subtitle": "დარეგისტრირდით დასაწყებად",
+      "name": "სახელი და გვარი",
+      "namePlaceholder": "შეიყვანეთ სახელი და გვარი",
+      "email": "ელ-ფოსტა",
+      "emailPlaceholder": "შეიყვანეთ ელ-ფოსტა",
+      "password": "პაროლი",
+      "passwordPlaceholder": "შეიყვანეთ პაროლი",
+      "confirmPassword": "გაიმეორეთ პაროლი",
+      "confirmPasswordPlaceholder": "გაიმეორეთ პაროლი",
+      "submit": "დარეგისტრირება",
+      "hasAccount": "უკვე გაქვთ ანგარიში?",
+      "login": "შესვლა",
+      "errors": {
+        "nameRequired": "სახელი სავალდებულოა",
+        "emailRequired": "გთხოვთ შეიყვანოთ სწორი ელ-ფოსტა",
+        "passwordRequired": "პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო",
+        "passwordMismatch": "პაროლები არ ემთხვევა"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "გაგზავნე სასაცილო SMS შენს მეგობრებს! 😄",
+      "subtitle": "მოახდინე სიურპრიზი და გაახარე ახლობლები უნიკალური შეტყობინებებით"
+    },
+    "form": {
+      "title": "SMS გაგზავნა",
+      "subtitle": "შეავსე ყველა ველი SMS-ის გასაგზავნად",
+      "senderName": "რა სახელით გსურთ SMS გაგზავნა?",
+      "senderNamePlaceholder": "მაგ: Giorgi",
+      "recipientNumber": "მიმღების ნომერი",
+      "recipientNumberPlaceholder": "5XXXXXXXX",
+      "message": "რა ტექსტის გაგზავნა გსურთ?",
+      "messagePlaceholder": "დაწერეთ თქვენი შეტყობინება...",
+      "payment": "გადახდა",
+      "paymentPlaceholder": "აირჩიეთ ბანკი",
+      "paymentReceipt": "ატვირთე გადახდის ქვითარი",
+      "paymentReceiptButton": "აირჩიეთ ფაილი",
+      "terms": "ვეთანხმები წესებს და მომსახურების პოლიტიკას,",
+      "termsLink": "ნახე წესები და პირობები",
+      "submit": "SMS-ის გაგზავნა",
+      "banks": {
+        "bog": "საქართველოს ბანკი",
+        "tbc": "TBC ბანკი"
+      },
+      "errors": {
+        "senderNameRequired": "სახელი სავალდებულოა",
+        "senderNamePattern": "გთხოვთ გამოიყენოთ მხოლოდ ლათინური ასოები",
+        "recipientRequired": "მობილურის ნომერი სავალდებულოა",
+        "recipientPattern": "შეიყვანეთ 9 ციფრიანი ნომერი",
+        "messageRequired": "შეტყობინება სავალდებულოა",
+        "bankRequired": "აირჩიეთ ბანკი",
+        "receiptRequired": "გადახდის ქვითარი სავალდებულოა",
+        "termsRequired": "თანხმობა წესებთან სავალდებულოა"
+      }
+    }
+  }
+}
+

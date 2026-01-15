@@ -1,0 +1,107 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "yes": "Yes",
+    "no": "No",
+    "required": "Required"
+  },
+  "header": {
+    "title": "FunSMS",
+    "subtitle": "Send Laughs, Not Spam",
+    "menu": {
+      "account": "Account",
+      "smsHistory": "SMS History",
+      "logout": "Logout"
+    },
+    "theme": {
+      "light": "Light",
+      "dark": "Dark"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 FunSMS. Send smiles, not spam. Use responsibly! 😊"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome!",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "errors": {
+        "emailRequired": "Please enter a valid email!",
+        "passwordRequired": "Password is required!"
+      }
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Register to get started",
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "submit": "Register",
+      "hasAccount": "Already have an account?",
+      "login": "Sign In",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Please enter a valid email",
+        "passwordRequired": "Password must be at least 6 characters",
+        "passwordMismatch": "Passwords do not match"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Send funny SMS to your friends! 😄",
+      "subtitle": "Surprise and delight your loved ones with unique messages"
+    },
+    "form": {
+      "title": "Send SMS",
+      "subtitle": "Fill in all fields to send SMS",
+      "senderName": "What name do you want to send SMS with?",
+      "senderNamePlaceholder": "e.g: Giorgi",
+      "recipientNumber": "Recipient Number",
+      "recipientNumberPlaceholder": "5XXXXXXXX",
+      "message": "What text do you want to send?",
+      "messagePlaceholder": "Write your message...",
+      "payment": "Payment",
+      "paymentPlaceholder": "Select a bank",
+      "paymentReceipt": "Upload payment receipt",
+      "paymentReceiptButton": "Choose file",
+      "terms": "I agree to the terms and service policy,",
+      "termsLink": "See terms and conditions",
+      "submit": "Send SMS",
+      "banks": {
+        "bog": "Bank of Georgia",
+        "tbc": "TBC Bank"
+      },
+      "errors": {
+        "senderNameRequired": "Name is required",
+        "senderNamePattern": "Please use only Latin letters",
+        "recipientRequired": "Mobile number is required",
+        "recipientPattern": "Enter a 9-digit number",
+        "messageRequired": "Message is required",
+        "bankRequired": "Please select a bank",
+        "receiptRequired": "Payment receipt is required",
+        "termsRequired": "Agreement to terms is required"
+      }
+    }
+  }
+}
+

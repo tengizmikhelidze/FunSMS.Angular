@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {HeaderComponent} from '../../../../shared/components/header/header';
 import {FooterComponent} from '../../../../shared/components/footer/footer';
 import {InputTextModule} from 'primeng/inputtext';
@@ -16,6 +17,7 @@ interface PaymentBank {
     selector: 'app-home',
     imports: [
         CommonModule,
+        TranslateModule,
         HeaderComponent,
         FooterComponent,
         ReactiveFormsModule,
@@ -29,13 +31,14 @@ interface PaymentBank {
 })
 export class HomeComponent {
     private fb = inject(FormBuilder);
+    private translate = inject(TranslateService);
 
     isLoading = signal(false);
     uploadedFiles = signal<File[]>([]);
 
     banks: PaymentBank[] = [
-        {name: 'საქართველოს ბანკი', code: 'BOG'},
-        {name: 'TBC ბანკი', code: 'TBC'}
+        {name: 'home.form.banks.bog', code: 'BOG'},
+        {name: 'home.form.banks.tbc', code: 'TBC'}
     ];
 
     smsForm: FormGroup = this.fb.group({

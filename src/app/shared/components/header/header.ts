@@ -3,22 +3,23 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { ThemeService } from '../../../core/services/theme.service';
+import { LanguageService } from '../../../core/services/language.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MenuItem } from 'primeng/api';
-import {StyleClass} from "primeng/styleclass";
 
 @Component({
   selector: 'app-header',
   imports: [
     FormsModule,
+    TranslateModule,
     AvatarModule,
     MenuModule,
     ButtonModule,
-    ToggleButtonModule,
-    StyleClass
+    ToggleButtonModule
   ],
   templateUrl: './header.html',
   styleUrl: './header.scss',
@@ -28,12 +29,16 @@ export class HeaderComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   protected themeService = inject(ThemeService);
+  protected languageService = inject(LanguageService);
 
   currentUser = this.authService.getCurrentUser();
   currentTheme = this.themeService.theme;
 
   // ToggleButton requires a writable property for ngModel
   isDarkMode = this.themeService.theme() === 'dark';
+
+  currentLanguage = this.languageService.currentLanguage;
+  currentLanguageOption = computed(() => this.languageService.getCurrentLanguageOption());
 
   userInitials = computed(() => {
     const user = this.currentUser();

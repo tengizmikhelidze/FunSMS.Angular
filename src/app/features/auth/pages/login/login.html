@@ -3,33 +3,33 @@
 <div class="auth-container">
   <div class="auth-card">
     <div class="auth-header">
-      <h1>მოგესალმებით !</h1>
-      <p>შედით თქვენს ექაუნთში</p>
+      <h1>{{ 'auth.login.title' | translate }}</h1>
+      <p>{{ 'auth.login.subtitle' | translate }}</p>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
       <div class="form-field">
-        <label for="email">ემაილი</label>
+        <label for="email">{{ 'auth.login.email' | translate }}</label>
         <input
           pInputText
           id="email"
           formControlName="email"
           type="email"
-          placeholder="შეიყვანეთ იმეილი !"
+          [placeholder]="'auth.login.emailPlaceholder' | translate"
           class="w-full"
           [class.ng-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
         />
         @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-          <small class="error-message">გთხოვთ შეიყვანოთ სწორი იმეილი !</small>
+          <small class="error-message">{{ 'auth.login.errors.emailRequired' | translate }}</small>
         }
       </div>
 
       <div class="form-field">
-        <label for="password">პაროლი</label>
+        <label for="password">{{ 'auth.login.password' | translate }}</label>
         <p-password
           id="password"
           formControlName="password"
-          placeholder="შეიყვანეთ პაროლი !"
+          [placeholder]="'auth.login.passwordPlaceholder' | translate"
           [toggleMask]="true"
           [feedback]="false"
           styleClass="w-full"
@@ -37,7 +37,7 @@
           [class.ng-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
         />
         @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-          <small class="error-message">პაროლი სავალდებულოა !</small>
+          <small class="error-message">{{ 'auth.login.errors.passwordRequired' | translate }}</small>
         }
       </div>
 
@@ -50,14 +50,14 @@
       <button
         pButton
         type="submit"
-        label="Sign In"
+        [label]="'auth.login.submit' | translate"
         [loading]="isLoading()"
         [disabled]="loginForm.invalid || isLoading()"
         class="w-full"
       ></button>
 
       <div class="auth-footer">
-        <p>არ გაქვთ ექაუნთი? <a routerLink="/auth/register">დარეგისტრირდით</a></p>
+        <p>{{ 'auth.login.noAccount' | translate }} <a routerLink="/auth/register">{{ 'auth.login.register' | translate }}</a></p>
       </div>
     </form>
   </div>

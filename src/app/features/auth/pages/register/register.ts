@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, signal, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../../core/services/auth.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -13,6 +14,7 @@ import { FooterComponent } from '../../../../shared/components/footer/footer';
   selector: 'app-register',
   imports: [
     ReactiveFormsModule,
+    TranslateModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,

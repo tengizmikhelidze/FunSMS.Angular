@@ -9,23 +9,35 @@
                 </svg>
             </div>
             <div class="header-title">
-                <h1>FunSMS</h1>
-                <span>Send Laughs, Not Spam</span>
+                <h1>{{ 'header.title' | translate }}</h1>
+                <span>{{ 'header.subtitle' | translate }}</span>
             </div>
         </div>
 
         <div class="header-actions">
+            <!-- Language Switcher Button -->
+            <button
+                type="button"
+                class="language-toggle-button"
+                (click)="languageService.cycleLanguage()"
+                pButton
+                [label]="currentLanguageOption().flag + ' ' + currentLanguageOption().name"
+                severity="secondary"
+                [outlined]="true"
+                title="Change Language"
+            ></button>
+
             <!-- Theme Toggle Button -->
-            <p-toggle-button
+            <p-togglebutton
                 [(ngModel)]="isDarkMode"
                 (onChange)="onThemeToggle()"
                 [onIcon]="'pi pi-moon'"
                 [offIcon]="'pi pi-sun'"
-                onLabel="Dark"
-                offLabel="Light"
-                pStyleClass="theme-toggle-button"
+                [onLabel]="'header.theme.dark' | translate"
+                [offLabel]="'header.theme.light' | translate"
+                styleClass="theme-toggle-button"
                 [title]="themeLabel()"
-            ></p-toggle-button>
+            ></p-togglebutton>
 
             @if (currentUser(); as user) {
                 <div class="user-profile">
