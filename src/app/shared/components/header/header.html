@@ -1,4 +1,4 @@
-<header class="app-header">
+<header class="app-header" #header>
     <div class="header-container">
         <div class="header-logo" (click)="navigateToHome()" style="cursor: pointer;">
             <div class="logo-icon">
@@ -60,7 +60,7 @@
                         #menu
                         [model]="menuItems()"
                         [popup]="true"
-                        [appendTo]="'body'"
+                        [appendTo]="header"
                         styleClass="user-menu"
                     />
                 </div>
