@@ -11,13 +11,14 @@ import {
   PhoneValidationResponse,
   SmsMessage
 } from '../models';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SmsService {
   private http = inject(HttpClient);
-  private readonly API_URL = '/api/sms';
+  private readonly API_URL = `${environment.apiUrl}/sms`;
 
   /**
    * Send an SMS message

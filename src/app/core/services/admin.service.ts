@@ -9,13 +9,14 @@ import {
   AdminUserListResponse,
   AdminApiResponse
 } from '../models';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
   private http = inject(HttpClient);
-  private readonly API_URL = '/api/admin';
+  private readonly API_URL = `${environment.apiUrl}/admin`;
 
   /**
    * Get all users (admin only)
